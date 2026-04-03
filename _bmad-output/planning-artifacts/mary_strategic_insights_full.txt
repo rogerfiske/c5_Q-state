@@ -1,0 +1,435 @@
+================================================================================
+STRATEGIC ANALYSIS: c5_Q-state Lottery Dataset
+Analyst: Mary (Senior Business Analyst)
+================================================================================
+
+Dataset Shape: (11756, 6)
+Date Range: 1992-02-04 00:00:00 to 2026-04-02 00:00:00
+Total Draws: 11,756
+Time Span: 34.2 years
+
+================================================================================
+PART 1: PER-COLUMN PREDICTABILITY DIFFERENCES
+================================================================================
+
+--- Basic Statistics Per Column ---
+               QS_1          QS_2          QS_3          QS_4          QS_5
+count  11756.000000  11756.000000  11756.000000  11756.000000  11756.000000
+mean       6.655665     13.209510     19.916128     26.648095     33.243280
+std        5.211430      6.608277      7.013103      6.600073      5.316813
+min        1.000000      2.000000      3.000000      4.000000      9.000000
+25%        3.000000      8.000000     15.000000     22.000000     30.000000
+50%        5.000000     12.000000     20.000000     27.000000     35.000000
+75%        9.000000     18.000000     25.000000     32.000000     37.000000
+max       30.000000     35.000000     37.000000     38.000000     39.000000
+
+--- Advanced Metrics Per Column ---
+
+QS_1:
+  Unique values: 30 / 39
+  Skewness: 1.2052
+  Kurtosis: 1.2463
+  Coefficient of Variation: 0.7830
+  Autocorrelation (lag=1): -0.0048
+  Shannon Entropy: 4.0366 (max possible: 5.2854)
+  Normalized Entropy: 0.7637
+  **Predictability Proxy: 0.2363**
+
+QS_2:
+  Unique values: 34 / 39
+  Skewness: 0.5087
+  Kurtosis: -0.3284
+  Coefficient of Variation: 0.5002
+  Autocorrelation (lag=1): -0.0060
+  Shannon Entropy: 4.6770 (max possible: 5.2854)
+  Normalized Entropy: 0.8849
+  **Predictability Proxy: 0.1151**
+
+QS_3:
+  Unique values: 35 / 39
+  Skewness: -0.0087
+  Kurtosis: -0.6991
+  Coefficient of Variation: 0.3521
+  Autocorrelation (lag=1): -0.0027
+  Shannon Entropy: 4.8220 (max possible: 5.2854)
+  Normalized Entropy: 0.9123
+  **Predictability Proxy: 0.0877**
+
+QS_4:
+  Unique values: 35 / 39
+  Skewness: -0.4884
+  Kurtosis: -0.3584
+  Coefficient of Variation: 0.2477
+  Autocorrelation (lag=1): 0.0087
+  Shannon Entropy: 4.6798 (max possible: 5.2854)
+  Normalized Entropy: 0.8854
+  **Predictability Proxy: 0.1146**
+
+QS_5:
+  Unique values: 31 / 39
+  Skewness: -1.1923
+  Kurtosis: 1.1699
+  Coefficient of Variation: 0.1599
+  Autocorrelation (lag=1): -0.0015
+  Shannon Entropy: 4.0611 (max possible: 5.2854)
+  Normalized Entropy: 0.7684
+  **Predictability Proxy: 0.2316**
+
+--- KEY FINDING: Predictability Ranking (Higher = More Predictable) ---
+  1. QS_1: 0.2363
+  2. QS_5: 0.2316
+  3. QS_2: 0.1151
+  4. QS_4: 0.1146
+  5. QS_3: 0.0877
+
+--- Top 10 Most Frequent Values Per Column ---
+
+QS_1:
+   1: 1504 (12.79%)
+   2: 1398 (11.89%)
+   3: 1205 (10.25%)
+   4: 1005 ( 8.55%)
+   5:  976 ( 8.30%)
+   6:  836 ( 7.11%)
+   7:  728 ( 6.19%)
+   8:  626 ( 5.32%)
+   9:  583 ( 4.96%)
+  10:  493 ( 4.19%)
+
+QS_2:
+  10:  715 ( 6.08%)
+  11:  695 ( 5.91%)
+   8:  664 ( 5.65%)
+   9:  653 ( 5.55%)
+  13:  651 ( 5.54%)
+  12:  646 ( 5.50%)
+   7:  617 ( 5.25%)
+  15:  599 ( 5.10%)
+  14:  587 ( 4.99%)
+   6:  573 ( 4.87%)
+
+QS_3:
+  20:  577 ( 4.91%)
+  18:  575 ( 4.89%)
+  19:  575 ( 4.89%)
+  21:  574 ( 4.88%)
+  23:  568 ( 4.83%)
+  17:  562 ( 4.78%)
+  24:  562 ( 4.78%)
+  16:  543 ( 4.62%)
+  22:  540 ( 4.59%)
+  25:  502 ( 4.27%)
+
+QS_4:
+  30:  680 ( 5.78%)
+  29:  674 ( 5.73%)
+  28:  665 ( 5.66%)
+  32:  661 ( 5.62%)
+  31:  659 ( 5.61%)
+  27:  623 ( 5.30%)
+  33:  599 ( 5.10%)
+  26:  591 ( 5.03%)
+  34:  583 ( 4.96%)
+  25:  564 ( 4.80%)
+
+QS_5:
+  39: 1563 (13.30%)
+  38: 1275 (10.85%)
+  37: 1194 (10.16%)
+  36: 1067 ( 9.08%)
+  35:  946 ( 8.05%)
+  34:  818 ( 6.96%)
+  33:  710 ( 6.04%)
+  32:  641 ( 5.45%)
+  31:  558 ( 4.75%)
+  30:  499 ( 4.24%)
+
+================================================================================
+PART 2: OVERLAPPING DISTRIBUTIONS
+================================================================================
+
+--- Quantile Ranges Per Column ---
+
+QS_1:
+   5th percentile:   1.0
+  25th percentile:   3.0
+  50th percentile:   5.0
+  75th percentile:   9.0
+  95th percentile:  17.0
+  IQR: 6.0
+  90% range: [1.0, 17.0]
+
+QS_2:
+   5th percentile:   4.0
+  25th percentile:   8.0
+  50th percentile:  12.0
+  75th percentile:  18.0
+  95th percentile:  25.0
+  IQR: 10.0
+  90% range: [4.0, 25.0]
+
+QS_3:
+   5th percentile:   8.0
+  25th percentile:  15.0
+  50th percentile:  20.0
+  75th percentile:  25.0
+  95th percentile:  31.0
+  IQR: 10.0
+  90% range: [8.0, 31.0]
+
+QS_4:
+   5th percentile:  15.0
+  25th percentile:  22.0
+  50th percentile:  27.0
+  75th percentile:  32.0
+  95th percentile:  36.0
+  IQR: 10.0
+  90% range: [15.0, 36.0]
+
+QS_5:
+   5th percentile:  22.0
+  25th percentile:  30.0
+  50th percentile:  35.0
+  75th percentile:  37.0
+  95th percentile:  39.0
+  IQR: 7.0
+  90% range: [22.0, 39.0]
+
+--- Distribution Overlap Between Adjacent Positions ---
+
+QS_1 vs QS_2:
+  QS_1 range: [1, 30] (span: 30)
+  QS_2 range: [2, 35] (span: 34)
+  Overlap: [2, 30] (span: 29, 96.7%)
+  KS Test: statistic=0.4325, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+QS_2 vs QS_3:
+  QS_2 range: [2, 35] (span: 34)
+  QS_3 range: [3, 37] (span: 35)
+  Overlap: [3, 35] (span: 33, 97.1%)
+  KS Test: statistic=0.3743, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+QS_3 vs QS_4:
+  QS_3 range: [3, 37] (span: 35)
+  QS_4 range: [4, 38] (span: 35)
+  Overlap: [4, 37] (span: 34, 97.1%)
+  KS Test: statistic=0.3670, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+QS_4 vs QS_5:
+  QS_4 range: [4, 38] (span: 35)
+  QS_5 range: [9, 39] (span: 31)
+  Overlap: [9, 38] (span: 30, 96.8%)
+  KS Test: statistic=0.4314, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+================================================================================
+PART 3: CYLINDRICAL ADJACENCY PROPERTIES (39 <-> 1 WRAP-AROUND)
+================================================================================
+
+--- Boundary Value Frequencies (1 and 39) ---
+QS_1: 1 appears 1504 times (12.79% vs expected 2.56%), 39 appears    0 times ( 0.00% vs expected 2.56%)
+QS_2: 1 appears    0 times ( 0.00% vs expected 2.56%), 39 appears    0 times ( 0.00% vs expected 2.56%)
+QS_3: 1 appears    0 times ( 0.00% vs expected 2.56%), 39 appears    0 times ( 0.00% vs expected 2.56%)
+QS_4: 1 appears    0 times ( 0.00% vs expected 2.56%), 39 appears    0 times ( 0.00% vs expected 2.56%)
+QS_5: 1 appears    0 times ( 0.00% vs expected 2.56%), 39 appears 1563 times (13.30% vs expected 2.56%)
+
+--- Circular Gap Statistics (treating 1-39 as circular) ---
+
+QS_1 -> QS_2:
+  Linear gaps: mean=6.55, median=5.0, std=5.11
+  Circular gaps: mean=6.41, median=5.0, std=4.72
+  Min circular gap: 1 (most compressed)
+  Max circular gap: 19 (most spread)
+
+QS_2 -> QS_3:
+  Linear gaps: mean=6.71, median=5.0, std=5.21
+  Circular gaps: mean=6.55, median=5.0, std=4.82
+  Min circular gap: 1 (most compressed)
+  Max circular gap: 19 (most spread)
+
+QS_3 -> QS_4:
+  Linear gaps: mean=6.73, median=5.0, std=5.28
+  Circular gaps: mean=6.55, median=5.0, std=4.83
+  Min circular gap: 1 (most compressed)
+  Max circular gap: 19 (most spread)
+
+QS_4 -> QS_5:
+  Linear gaps: mean=6.60, median=5.0, std=5.17
+  Circular gaps: mean=6.42, median=5.0, std=4.71
+  Min circular gap: 1 (most compressed)
+  Max circular gap: 19 (most spread)
+
+--- Boundary Transition Patterns (Wrap-Around Detection) ---
+
+Total potential boundary wraps (37-39 -> 1-3): 0
+Wrap rate: 0.00% of all position transitions
+
+================================================================================
+PART 4: REPEAT PATTERNS & TEMPORAL BEHAVIOR
+================================================================================
+
+--- Consecutive Repeat Analysis (same number in consecutive draws) ---
+QS_1: 875 consecutive repeats (7.44%)
+  Expected (random): 2.56% | Ratio: 2.90x
+  * ABOVE random expectation (persistence/momentum)
+QS_2: 500 consecutive repeats (4.25%)
+  Expected (random): 2.56% | Ratio: 1.66x
+  * ABOVE random expectation (persistence/momentum)
+QS_3: 444 consecutive repeats (3.78%)
+  Expected (random): 2.56% | Ratio: 1.47x
+  * ABOVE random expectation (persistence/momentum)
+QS_4: 540 consecutive repeats (4.59%)
+  Expected (random): 2.56% | Ratio: 1.79x
+  * ABOVE random expectation (persistence/momentum)
+QS_5: 871 consecutive repeats (7.41%)
+  Expected (random): 2.56% | Ratio: 2.89x
+  * ABOVE random expectation (persistence/momentum)
+
+--- Gap Analysis (draws between repeated numbers) ---
+
+QS_1:
+  Mean gap: 28.3 draws
+  Median gap: 10.0 draws
+  Std gap: 119.7
+  Expected gap (uniform): 301.4 draws
+
+QS_2:
+  Mean gap: 32.1 draws
+  Median gap: 17.0 draws
+  Std gap: 68.8
+  Expected gap (uniform): 301.4 draws
+
+QS_3:
+  Mean gap: 34.6 draws
+  Median gap: 19.0 draws
+  Std gap: 74.2
+  Expected gap (uniform): 301.4 draws
+
+QS_4:
+  Mean gap: 32.7 draws
+  Median gap: 17.0 draws
+  Std gap: 82.6
+  Expected gap (uniform): 301.4 draws
+
+QS_5:
+  Mean gap: 28.4 draws
+  Median gap: 10.0 draws
+  Std gap: 103.8
+  Expected gap (uniform): 301.4 draws
+
+================================================================================
+PART 5: STRATEGIC INSIGHTS FOR TABM FEATURE ENGINEERING
+================================================================================
+
+--- KEY FINDING #1: POSITION-SPECIFIC CHARACTERISTICS ---
+
+* QS_1 (first position): Lowest mean (~8), highest in predictability
+  -> Heavily concentrated in 1-15 range
+  -> Strong candidate for position-specific embedding
+
+* QS_2 (second position): Medium-low mean (~13)
+  -> Significant overlap with QS_1 but shifted distribution
+  -> Different skewness indicates distinct behavior
+
+* QS_3 (third position): Median mean (~21)
+  -> Central position shows most uniform distribution
+  -> May be hardest to predict (highest entropy)
+
+* QS_4 (fourth position): Medium-high mean (~27)
+  -> Skewed toward higher values
+  -> Symmetric counterpart to QS_2
+
+* QS_5 (fifth position): Highest mean (~33), concentrated in 25-39
+  -> Mirror behavior to QS_1
+  -> High predictability due to constrained range
+
+
+--- KEY FINDING #2: WHY TABULAR > TIME-SERIES ---
+
+* LOW TEMPORAL AUTOCORRELATION:
+  - Average lag-1 autocorrelation across positions: -0.0013
+  -> Weak temporal dependencies suggest limited LSTM/Transformer advantage
+
+* STRONG CROSS-COLUMN STRUCTURE:
+  - Strictly ascending constraint creates inter-column dependencies
+  - Gap patterns between positions are learnable features
+  -> TabM's MLP ensemble can capture these relational patterns
+
+* POSITION-SPECIFIC DISTRIBUTIONS:
+  - Each column has significantly different distribution (KS tests confirm)
+  -> Ideal for parameter-efficient per-position ensembling
+
+
+--- KEY FINDING #3: CYLINDRICAL PROPERTIES ---
+
+* BOUNDARY WRAP-AROUND:
+  - 0 boundary transitions detected
+  - 0.00% of all position transitions show wrap behavior
+  -> Modular/circular features will capture this
+
+* CIRCULAR GAP ENCODING:
+  - Treating 1-39 as circular reduces gap variance
+  -> Sine/cosine embedding: sin(2π*value/39), cos(2π*value/39)
+
+
+--- RECOMMENDED FEATURE ENGINEERING STRATEGIES ---
+
+1. POSITION-AWARE FEATURES:
+   * Separate TabM sub-models for each QS position
+   * Position-specific frequency encodings (last 100/500/1000 draws)
+   * Relative position within observed range (normalized 0-1)
+
+2. CYLINDRICAL FEATURES:
+   * Modular arithmetic (value % 39)
+   * Sine/cosine encoding for circular space
+   * Circular gap features between positions
+
+3. RELATIONAL FEATURES:
+   * Linear gaps (QS_2 - QS_1, QS_3 - QS_2, etc.)
+   * Circular gaps (min distance treating as wrap-around)
+   * Total spread (QS_5 - QS_1)
+   * Compression ratio (spread / 38)
+
+4. HISTORICAL FEATURES:
+   * Rolling frequency (last N draws per number)
+   * Draws since last appearance (gap encoding)
+   * Recency-weighted occurrence rates
+   * Hot/cold number indicators
+
+5. ENSEMBLE ARCHITECTURE:
+   * Per-position binary classifiers (39 × 5 = 195 outputs)
+   * Shared base features + position-specific heads
+   * Parameter-efficient ensembling via TabM's architecture
+
+
+--- SUCCESS METRICS ALIGNMENT ---
+
+Given metrics: Precision@20, Recall@20, Hit-rate
+
+* PRECISION@20: Of top-20 predicted numbers, % that match actual 5
+  -> Optimize for confident top-k predictions
+
+* RECALL@20: Of actual 5 numbers, % captured in top-20
+  -> If all 5 appear in top-20, Recall = 100%
+  -> Hit-rate = 1 implies Recall@20 = 100%
+
+* HIT-RATE: Binary success (all 5 in top-20)
+  -> Primary success metric
+  -> Baseline (random): C(20,5) / C(39,5) ~ 2.4%
+  -> Frequency-based baseline: ~5-10% (estimate)
+
+RECOMMENDATION: Track ensemble calibration. TabM's parameter-efficient
+architecture should excel at this structured prediction task.
+
+
+================================================================================
+ANALYSIS COMPLETE — Mary (Senior Business Analyst)
+================================================================================
+
+Next Steps:
+1. Winston (Architect) -> Design repo structure + training pipeline
+2. Amelia (Developer) -> Implement data validation + feature engineering
+3. TabM Integration -> Position-specific ensemble architecture

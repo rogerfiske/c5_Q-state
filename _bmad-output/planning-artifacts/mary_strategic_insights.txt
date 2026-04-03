@@ -1,0 +1,228 @@
+================================================================================
+STRATEGIC ANALYSIS: c5_Q-state Lottery Dataset
+Analyst: Mary (Senior Business Analyst)
+================================================================================
+
+Dataset Shape: (11756, 6)
+Date Range: 1992-02-04 00:00:00 to 2026-04-02 00:00:00
+Total Draws: 11,756
+Time Span: 34.2 years
+
+================================================================================
+PART 1: PER-COLUMN PREDICTABILITY DIFFERENCES
+================================================================================
+
+--- Basic Statistics Per Column ---
+               QS_1          QS_2          QS_3          QS_4          QS_5
+count  11756.000000  11756.000000  11756.000000  11756.000000  11756.000000
+mean       6.655665     13.209510     19.916128     26.648095     33.243280
+std        5.211430      6.608277      7.013103      6.600073      5.316813
+min        1.000000      2.000000      3.000000      4.000000      9.000000
+25%        3.000000      8.000000     15.000000     22.000000     30.000000
+50%        5.000000     12.000000     20.000000     27.000000     35.000000
+75%        9.000000     18.000000     25.000000     32.000000     37.000000
+max       30.000000     35.000000     37.000000     38.000000     39.000000
+
+--- Advanced Metrics Per Column ---
+
+QS_1:
+  Unique values: 30 / 39
+  Skewness: 1.2052
+  Kurtosis: 1.2463
+  Coefficient of Variation: 0.7830
+  Autocorrelation (lag=1): -0.0048
+  Shannon Entropy: 4.0366 (max possible: 5.2854)
+  Normalized Entropy: 0.7637
+  **Predictability Proxy: 0.2363**
+
+QS_2:
+  Unique values: 34 / 39
+  Skewness: 0.5087
+  Kurtosis: -0.3284
+  Coefficient of Variation: 0.5002
+  Autocorrelation (lag=1): -0.0060
+  Shannon Entropy: 4.6770 (max possible: 5.2854)
+  Normalized Entropy: 0.8849
+  **Predictability Proxy: 0.1151**
+
+QS_3:
+  Unique values: 35 / 39
+  Skewness: -0.0087
+  Kurtosis: -0.6991
+  Coefficient of Variation: 0.3521
+  Autocorrelation (lag=1): -0.0027
+  Shannon Entropy: 4.8220 (max possible: 5.2854)
+  Normalized Entropy: 0.9123
+  **Predictability Proxy: 0.0877**
+
+QS_4:
+  Unique values: 35 / 39
+  Skewness: -0.4884
+  Kurtosis: -0.3584
+  Coefficient of Variation: 0.2477
+  Autocorrelation (lag=1): 0.0087
+  Shannon Entropy: 4.6798 (max possible: 5.2854)
+  Normalized Entropy: 0.8854
+  **Predictability Proxy: 0.1146**
+
+QS_5:
+  Unique values: 31 / 39
+  Skewness: -1.1923
+  Kurtosis: 1.1699
+  Coefficient of Variation: 0.1599
+  Autocorrelation (lag=1): -0.0015
+  Shannon Entropy: 4.0611 (max possible: 5.2854)
+  Normalized Entropy: 0.7684
+  **Predictability Proxy: 0.2316**
+
+--- KEY FINDING: Predictability Ranking (Higher = More Predictable) ---
+  1. QS_1: 0.2363
+  2. QS_5: 0.2316
+  3. QS_2: 0.1151
+  4. QS_4: 0.1146
+  5. QS_3: 0.0877
+
+--- Top 10 Most Frequent Values Per Column ---
+
+QS_1:
+   1: 1504 (12.79%)
+   2: 1398 (11.89%)
+   3: 1205 (10.25%)
+   4: 1005 ( 8.55%)
+   5:  976 ( 8.30%)
+   6:  836 ( 7.11%)
+   7:  728 ( 6.19%)
+   8:  626 ( 5.32%)
+   9:  583 ( 4.96%)
+  10:  493 ( 4.19%)
+
+QS_2:
+  10:  715 ( 6.08%)
+  11:  695 ( 5.91%)
+   8:  664 ( 5.65%)
+   9:  653 ( 5.55%)
+  13:  651 ( 5.54%)
+  12:  646 ( 5.50%)
+   7:  617 ( 5.25%)
+  15:  599 ( 5.10%)
+  14:  587 ( 4.99%)
+   6:  573 ( 4.87%)
+
+QS_3:
+  20:  577 ( 4.91%)
+  18:  575 ( 4.89%)
+  19:  575 ( 4.89%)
+  21:  574 ( 4.88%)
+  23:  568 ( 4.83%)
+  17:  562 ( 4.78%)
+  24:  562 ( 4.78%)
+  16:  543 ( 4.62%)
+  22:  540 ( 4.59%)
+  25:  502 ( 4.27%)
+
+QS_4:
+  30:  680 ( 5.78%)
+  29:  674 ( 5.73%)
+  28:  665 ( 5.66%)
+  32:  661 ( 5.62%)
+  31:  659 ( 5.61%)
+  27:  623 ( 5.30%)
+  33:  599 ( 5.10%)
+  26:  591 ( 5.03%)
+  34:  583 ( 4.96%)
+  25:  564 ( 4.80%)
+
+QS_5:
+  39: 1563 (13.30%)
+  38: 1275 (10.85%)
+  37: 1194 (10.16%)
+  36: 1067 ( 9.08%)
+  35:  946 ( 8.05%)
+  34:  818 ( 6.96%)
+  33:  710 ( 6.04%)
+  32:  641 ( 5.45%)
+  31:  558 ( 4.75%)
+  30:  499 ( 4.24%)
+
+================================================================================
+PART 2: OVERLAPPING DISTRIBUTIONS
+================================================================================
+
+--- Quantile Ranges Per Column ---
+
+QS_1:
+   5th percentile:   1.0
+  25th percentile:   3.0
+  50th percentile:   5.0
+  75th percentile:   9.0
+  95th percentile:  17.0
+  IQR: 6.0
+  90% range: [1.0, 17.0]
+
+QS_2:
+   5th percentile:   4.0
+  25th percentile:   8.0
+  50th percentile:  12.0
+  75th percentile:  18.0
+  95th percentile:  25.0
+  IQR: 10.0
+  90% range: [4.0, 25.0]
+
+QS_3:
+   5th percentile:   8.0
+  25th percentile:  15.0
+  50th percentile:  20.0
+  75th percentile:  25.0
+  95th percentile:  31.0
+  IQR: 10.0
+  90% range: [8.0, 31.0]
+
+QS_4:
+   5th percentile:  15.0
+  25th percentile:  22.0
+  50th percentile:  27.0
+  75th percentile:  32.0
+  95th percentile:  36.0
+  IQR: 10.0
+  90% range: [15.0, 36.0]
+
+QS_5:
+   5th percentile:  22.0
+  25th percentile:  30.0
+  50th percentile:  35.0
+  75th percentile:  37.0
+  95th percentile:  39.0
+  IQR: 7.0
+  90% range: [22.0, 39.0]
+
+--- Distribution Overlap Between Adjacent Positions ---
+
+QS_1 vs QS_2:
+  QS_1 range: [1, 30] (span: 30)
+  QS_2 range: [2, 35] (span: 34)
+  Overlap: [2, 30] (span: 29, 96.7%)
+  KS Test: statistic=0.4325, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+QS_2 vs QS_3:
+  QS_2 range: [2, 35] (span: 34)
+  QS_3 range: [3, 37] (span: 35)
+  Overlap: [3, 35] (span: 33, 97.1%)
+  KS Test: statistic=0.3743, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+QS_3 vs QS_4:
+  QS_3 range: [3, 37] (span: 35)
+  QS_4 range: [4, 38] (span: 35)
+  Overlap: [4, 37] (span: 34, 97.1%)
+  KS Test: statistic=0.3670, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+QS_4 vs QS_5:
+  QS_4 range: [4, 38] (span: 35)
+  QS_5 range: [9, 39] (span: 31)
+  Overlap: [9, 38] (span: 30, 96.8%)
+  KS Test: statistic=0.4314, p-value=0.0000e+00
+  >> Distributions are SIGNIFICANTLY DIFFERENT (p < 0.001)
+
+================================================================================

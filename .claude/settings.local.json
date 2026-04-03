@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Out-File -Encoding UTF8 \"c:\\\\Users\\\\Minis\\\\CascadeProjects\\\\c5_Q-state\\\\_bmad-output\\\\planning-artifacts\\\\mary_strategic_insights.txt\")",
+      "Bash(git remote add:*)"
+    ]
+  }
+}

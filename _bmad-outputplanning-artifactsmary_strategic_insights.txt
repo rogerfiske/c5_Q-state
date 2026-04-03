@@ -1,0 +1,1 @@
+C:\Users\Minis\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\Minis\\CascadeProjects\\c5_Q-state\\analysismary_strategic_analysis_text.py': [Errno 2] No such file or directory
