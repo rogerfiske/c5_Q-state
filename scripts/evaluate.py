@@ -73,7 +73,13 @@ def load_and_prepare_data():
 def extract_actual_numbers(y_matrix):
     """Extract actual 5 numbers from target matrix."""
     actuals = []
-    for row in y_matrix:
+    # Convert to numpy array if DataFrame
+    if isinstance(y_matrix, pd.DataFrame):
+        y_array = y_matrix.values
+    else:
+        y_array = y_matrix
+
+    for row in y_array:
         # Get indices where value is 1 (0-indexed)
         indices = np.where(row == 1)[0]
         # Convert to 1-indexed numbers

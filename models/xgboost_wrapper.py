@@ -70,6 +70,12 @@ class XGBoostModel:
 
         self.models = []
 
+        # Convert to numpy if DataFrame
+        if hasattr(y_train, 'values'):
+            y_train = y_train.values
+        if y_val is not None and hasattr(y_val, 'values'):
+            y_val = y_val.values
+
         # Train one model per number (39 models total)
         for i in range(39):
             print(f"  Training model for number {i+1}/39...", end='\r')
@@ -112,7 +118,7 @@ class XGBoostModel:
 
             self.models.append(model)
 
-        print(f"\n✓ XGBoost training complete (39 models trained)")
+        print(f"\n[OK] XGBoost training complete (39 models trained)")
 
         return self
 
