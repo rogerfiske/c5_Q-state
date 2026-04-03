@@ -9,6 +9,8 @@ scipy>=1.10.0
 # Machine learning
 scikit-learn>=1.3.0
 torch>=2.0.0
+xgboost>=2.0.0
+tabm  # TabM package (ICLR 2025) - install from source if not on PyPI
 
 # Visualization
 matplotlib>=3.7.0
