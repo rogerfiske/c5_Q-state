@@ -1,0 +1,337 @@
+{
+  "prediction_date": "2026-04-09",
+  "model": "TabICLClassifier v2.0.3",
+  "n_lags": 10,
+  "generated": "2026-04-09T12:35:50.494517",
+  "predictions": {
+    "QS_1": {
+      "top5": [
+        {
+          "value": 1,
+          "probability": 0.138664
+        },
+        {
+          "value": 2,
+          "probability": 0.129835
+        },
+        {
+          "value": 3,
+          "probability": 0.108958
+        },
+        {
+          "value": 4,
+          "probability": 0.088164
+        },
+        {
+          "value": 5,
+          "probability": 0.085592
+        }
+      ],
+      "last_input_values": [
+        6,
+        4,
+        4,
+        4,
+        1,
+        14,
+        7,
+        7,
+        4,
+        1
+      ]
+    },
+    "QS_2": {
+      "top5": [
+        {
+          "value": 10,
+          "probability": 0.064769
+        },
+        {
+          "value": 11,
+          "probability": 0.061217
+        },
+        {
+          "value": 8,
+          "probability": 0.059563
+        },
+        {
+          "value": 12,
+          "probability": 0.059047
+        },
+        {
+          "value": 13,
+          "probability": 0.057612
+        }
+      ],
+      "last_input_values": [
+        7,
+        8,
+        5,
+        13,
+        4,
+        15,
+        21,
+        12,
+        5,
+        9
+      ]
+    },
+    "QS_3": {
+      "top5": [
+        {
+          "value": 18,
+          "probability": 0.05044
+        },
+        {
+          "value": 17,
+          "probability": 0.050438
+        },
+        {
+          "value": 19,
+          "probability": 0.050429
+        },
+        {
+          "value": 20,
+          "probability": 0.050426
+        },
+        {
+          "value": 24,
+          "probability": 0.050298
+        }
+      ],
+      "last_input_values": [
+        8,
+        23,
+        20,
+        16,
+        9,
+        23,
+        25,
+        16,
+        10,
+        18
+      ]
+    },
+    "QS_4": {
+      "top5": [
+        {
+          "value": 30,
+          "probability": 0.060194
+        },
+        {
+          "value": 29,
+          "probability": 0.059175
+        },
+        {
+          "value": 28,
+          "probability": 0.059085
+        },
+        {
+          "value": 31,
+          "probability": 0.057942
+        },
+        {
+          "value": 32,
+          "probability": 0.057593
+        }
+      ],
+      "last_input_values": [
+        27,
+        28,
+        21,
+        19,
+        18,
+        30,
+        31,
+        20,
+        13,
+        31
+      ]
+    },
+    "QS_5": {
+      "top5": [
+        {
+          "value": 39,
+          "probability": 0.145706
+        },
+        {
+          "value": 38,
+          "probability": 0.111529
+        },
+        {
+          "value": 37,
+          "probability": 0.102711
+        },
+        {
+          "value": 36,
+          "probability": 0.093703
+        },
+        {
+          "value": 35,
+          "probability": 0.081927
+        }
+      ],
+      "last_input_values": [
+        32,
+        29,
+        39,
+        37,
+        32,
+        37,
+        37,
+        32,
+        32,
+        36
+      ]
+    }
+  },
+  "baseline_historical": {
+    "QS_1": {
+      "top5": [
+        {
+          "value": 1,
+          "probability": 0.127954
+        },
+        {
+          "value": 2,
+          "probability": 0.118857
+        },
+        {
+          "value": 3,
+          "probability": 0.102449
+        },
+        {
+          "value": 4,
+          "probability": 0.0857
+        },
+        {
+          "value": 5,
+          "probability": 0.082979
+        }
+      ]
+    },
+    "QS_2": {
+      "top5": [
+        {
+          "value": 10,
+          "probability": 0.060789
+        },
+        {
+          "value": 11,
+          "probability": 0.059089
+        },
+        {
+          "value": 8,
+          "probability": 0.056538
+        },
+        {
+          "value": 9,
+          "probability": 0.055518
+        },
+        {
+          "value": 13,
+          "probability": 0.055433
+        }
+      ]
+    },
+    "QS_3": {
+      "top5": [
+        {
+          "value": 20,
+          "probability": 0.049141
+        },
+        {
+          "value": 18,
+          "probability": 0.048886
+        },
+        {
+          "value": 19,
+          "probability": 0.048886
+        },
+        {
+          "value": 21,
+          "probability": 0.048801
+        },
+        {
+          "value": 23,
+          "probability": 0.048461
+        }
+      ]
+    },
+    "QS_4": {
+      "top5": [
+        {
+          "value": 30,
+          "probability": 0.057898
+        },
+        {
+          "value": 29,
+          "probability": 0.057303
+        },
+        {
+          "value": 28,
+          "probability": 0.056623
+        },
+        {
+          "value": 32,
+          "probability": 0.056198
+        },
+        {
+          "value": 31,
+          "probability": 0.056028
+        }
+      ]
+    },
+    "QS_5": {
+      "top5": [
+        {
+          "value": 39,
+          "probability": 0.132971
+        },
+        {
+          "value": 38,
+          "probability": 0.1084
+        },
+        {
+          "value": 37,
+          "probability": 0.101683
+        },
+        {
+          "value": 36,
+          "probability": 0.090716
+        },
+        {
+          "value": 35,
+          "probability": 0.080428
+        }
+      ]
+    }
+  },
+  "acf_gate": {
+    "QS_1": {
+      "max_abs_acf": 0.020936,
+      "ci_bound": 0.018072,
+      "verdict": "iid"
+    },
+    "QS_2": {
+      "max_abs_acf": 0.036683,
+      "ci_bound": 0.018072,
+      "verdict": "iid"
+    },
+    "QS_3": {
+      "max_abs_acf": 0.029373,
+      "ci_bound": 0.018072,
+      "verdict": "iid"
+    },
+    "QS_4": {
+      "max_abs_acf": 0.018416,
+      "ci_bound": 0.018072,
+      "verdict": "iid"
+    },
+    "QS_5": {
+      "max_abs_acf": 0.026295,
+      "ci_bound": 0.018072,
+      "verdict": "iid"
+    }
+  }
+}
