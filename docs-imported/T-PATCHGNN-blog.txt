@@ -1,0 +1,455 @@
+--- Page 1 ---
+T-PATCHGNN: Efficient 
+Forecasting for Irregular and 
+Asynchronous Time Series 
+ 
+ 
+ 
+Dong-Keon Kim 
+Follow 
+12 min read 
+· 
+Mar 19, 2026 
+65 
+Eliminating pre-alignment while capturing dynamic correlations 
+with Transformers and GNNs 
+Introduction 
+About 
+This paper proposes Transformable Patching Graph Neural 
+Networks (T-PATCHGNN), a novel framework for Irregular 
+Multivariate Time Series (IMTS) forecasting that avoids canonical pre-
+alignment while effectively capturing both intra-time series 
+dependencies and inter-time series correlations. The model 
+integrates Transformer-based sequential modeling and time-
+adaptive graph neural networks to capture dynamic inter-
+
+--- Page 2 ---
+variable relationships. Extensive experiments on diverse real-world 
+datasets demonstrate that T-PATCHGNN achieves state-of-the-art 
+forecasting accuracy, superior scalability, and significantly 
+improved efficiency compared to existing approaches. 
+Background 
+ 
+Fig 1. (a) Irregular multivariate time series forecasting problem, where v1, v2, and v3 represent 
+three different vari ables. (b) Canonical pre-alignment representation causes the average 
+sequence length to increase from 5 to 15, an explosive growth proportional to the variable count. 
+(Source) 
+An irregular multivariate time series (IMTS) consists of 
+multiple time-dependent variables, each observed at non-uniform 
+and asynchronous timestamps. Formally, different variables may 
+
+--- Page 3 ---
+have distinct observation times and frequencies, leading to severe 
+misalignment across dimensions. As illustrated in Figure 1 of the 
+paper, even when variables cover the same overall time span, their 
+observations may be sparse, unevenly distributed, 
+and temporally inconsistent. This makes it difficult to directly 
+apply standard multivariate forecasting models, which typically 
+assume synchronized inputs. 
+A common approach to handling IMTS is to convert them 
+into canonical pre-aligned representations by enumerating all 
+unique timestamps across variables and filling missing values with 
+masks. Although this representation simplifies downstream modeling, 
+it introduces a critical drawback: the resulting sequence length 
+grows rapidly with the number of variables, causing 
+a sequence length explosion that severely limits scalability. 
+Alternative continuous-time models, such as neural ODE–based 
+methods, address irregularity by modeling latent state evolution 
+between observations, but they often incur high computational 
+cost and focus primarily on intra-variable dynamics. These limitations 
+motivate the need for a representation that can simultaneously 
+handle irregularity, asynchrony, and inter-variable 
+dependencies without sacrificing efficiency. 
+Preliminary 
+Problem Definition 
+
+--- Page 4 ---
+The paper formulates Irregular Multivariate Time Series (IMTS) as a 
+collection of observations across multiple variables, where 
+each variable is sampled at its own irregular timestamps. Formally, an 
+IMTS is defined as: 
+ 
+where N denotes the number of variables, and each 
+variable n contains, Lₙ observations consisting of timestamp–value 
+pairs. Given historical observations and a set of forecasting queries Q = 
+{qⱼⁿ},the objective is to learn a forecasting function: 
+ 
+that predicts future values corresponding to the query 
+timestamps. 
+Canonical Pre-Alignment Representation for IMTS 
+A common approach to facilitate modeling is the canonical pre-
+alignment representation, which constructs a unified timeline T from 
+all unique timestamps and represents the data using three matrices: 
+timestamps T, values X, and masking matrix M. While this 
+representation enables compatibility with standard sequence models, it 
+introduces a critical scalability issue. Specifically, the resulting 
+sequence length L depends on the total number of unique timestamps 
+across all variables and satisfies: 
+ 
+
+--- Page 5 ---
+where Lₐᵥ₉ and Lₘₐₓ denote the average and maximum number of 
+observations per variable, respectively. 
+This implies that the sequence length can grow proportionally 
+with the number of variables, leading to substantial 
+computational and memory overhead. This phenomenon, known 
+as sequence length explosion, highlights the limitations of pre-
+alignment strategies and motivates alternative 
+representations for IMTS forecasting. 
+Method 
+Press enter or click to view image in full size 
+ 
+Fig 2. Overview of T-PATCHGNN, which initially divides each univariate irregular time series 
+into a series of trans formable patches with varying number of consecutive observations but 
+maintains a unified time horizon resolution. (Source) 
+
+--- Page 6 ---
+The authors in this literature introduces Transformable Patching 
+Graph Neural Networks (T-PATCHGNN) for irregular 
+multivariate time series forecasting. As illustrated in Figure 2, the 
+framework consists of four major components: irregular time 
+series patching, patch encoding, intra-time series modeling, 
+and inter-time series modeling, followed by a forecasting head. 
+The key design principle is to reformulate IMTS forecasting at 
+a patch-level temporal resolution, which naturally aligns 
+asynchronous observations while avoiding canonical pre-alignment 
+and its associated scalability issues. 
+Irregular Time Series Patching 
+Transformable Patching 
+The core idea of transformable patching is to divide each univariate 
+irregular time series into a sequence of patches with variable 
+numbers of observations but fixed temporal span. Unlike 
+standard patching, which groups a fixed number of points, this method 
+ensures that each patch corresponds to a consistent time horizon (e.g., 
+2 hours), thereby normalizing temporal resolution across 
+variables. This design resolves the inconsistency caused by 
+irregular sampling, where equal-sized observation windows 
+may span drastically different time intervals. 
+Importantly, patching is performed independently for each 
+variable, avoiding the need for global time alignment. As a result, the 
+
+--- Page 7 ---
+sequence length depends only on the number of patches per 
+variable rather than the total number of unique timestamps 
+across variables. This directly mitigates the sequence length 
+explosion problem described in the preliminary section. Moreover, the 
+patch-level representation provides richer local context, 
+which improves the model’s ability to capture short-term temporal 
+dynamics. 
+Patch Encoding 
+Once patches are constructed, each patch is encoded into a latent 
+representation. The model first introduces a continuous time 
+embedding to represent irregular timestamps: 
+ 
+This formulation combines linear and periodic components, allowing 
+the model to capture both non-periodic trends and periodic patterns in 
+time series data. 
+The embedded observations within a patch are then processed using 
+a Transformable Time-aware Convolution Network (TTCN), 
+which dynamically generates convolutional filters conditioned on the 
+input sequence: 
+ 
+
+--- Page 8 ---
+where the filter adapts to variable-length inputs. The resulting patch 
+embedding is computed via: 
+ 
+This design is particularly suitable for IMTS because it can handle 
+variable-length patches and irregular intervals without 
+introducing additional parameters. A masking term is further 
+incorporated to account for empty patches: 
+ 
+ensuring robustness under sparse observations. 
+Intra- and Inter-Time Series Modeling 
+Transformer for Intra-Time Series Modeling 
+After encoding, patch embeddings are treated as tokens and fed into a 
+Transformer to model intra-series dependencies. Positional encodings 
+are added to preserve temporal ordering, and multi-head self-attention 
+is applied: 
+ 
+This allows the model to capture long-range dependencies 
+across patches, effectively modeling temporal dynamics within each 
+variable. 
+
+--- Page 9 ---
+Time-Varying Adaptive Graph Learning 
+To model inter-series relationships, the authors propose 
+learning time-varying adaptive graphs. Each graph corresponds to 
+a patch-level time step and is constructed by combining static variable 
+embeddings with dynamic patch representations: 
+Press enter or click to view image in full size 
+ 
+where the gating mechanism: 
+ 
+controls the contribution of dynamic information. 
+The adjacency matrix for each patch is then computed as: 
+ 
+This formulation enables the model to capture dynamic and 
+context-dependent correlations between variables, which is 
+essential for IMTS where relationships evolve over time. 
+GNN for Inter-Time Series Modeling 
+Given the learned graphs, Graph Neural Networks are applied to 
+propagate information across variables: 
+ 
+
+--- Page 10 ---
+This operation aggregates multi-hop relational information, 
+allowing the model to capture both direct and indirect 
+dependencies between variables. By stacking multiple such 
+blocks, the framework can flexibly model complex temporal and 
+relational patterns. 
+IMTS Forecasting 
+After intra- and inter-series modeling, the patch-level representations 
+are flattened and projected into a latent space: 
+ 
+For each forecasting query qⱼⁿ, the model concatenates the latent 
+representation with its time embedding and predicts the output via an 
+MLP: 
+ 
+The model is trained using Mean Squared Error (MSE): 
+ 
+Scalability Analysis 
+The proposed transformable patching ensures that the effective 
+sequence length is proportional to the average number of observations 
+per variable: 
+ 
+
+--- Page 11 ---
+This avoids the exponential growth seen in pre-alignment approaches. 
+The canonical alignment can amplify sequence length by up to 20× or 
+more, whereas the proposed method maintains a stable and scalable 
+representation. This property is critical for handling high-
+dimensional IMTS data efficiently. 
+Experiment 
+The experiment in this literature aimed to comprehensively evaluate 
+the effectiveness of T-PATCHGNN on irregular multivariate time 
+series forecasting tasks. The authors constructed a diverse 
+benchmark covering multiple real-world domains and compared 
+against a wide range of baselines spanning forecasting, classification, 
+and interpolation tasks. Through these experiments, they assess not 
+only predictive performance but also scalability and robustness of the 
+proposed method. 
+Dataset 
+The evaluation is conducted on four real-world IMTS datasets 
+spanning different domains: 
+• PhysioNet: Healthcare dataset with physiological signals 
+(high irregularity and sparsity) 
+• MIMIC: Clinical dataset with intensive care unit 
+measurements 
+
+--- Page 12 ---
+• Human Activity: Biomechanics dataset with sensor-based 
+motion data 
+• USHCN: Climate dataset with long-term environmental 
+observations 
+These datasets vary significantly in terms of number of variables, 
+sampling frequency, and sparsity, providing a comprehensive testbed 
+for IMTS forecasting. 
+Model Set-up 
+The experiments are conducted under consistent settings to ensure 
+fairness: 
+• Hidden dimensions: 64 (PhysioNet, MIMIC), 32 (others) 
+• Batch size: 32 (most datasets), 192 (USHCN) 
+• Optimizer: Adam 
+• Early stopping: patience of 10 epochs 
+• Multiple runs with different random seeds 
+Key configurations of T-PATCHGNN include: 
+• Patch window sizes tailored per dataset (e.g., 8 hours, 
+300 ms, 2 months) 
+
+--- Page 13 ---
+• Transformer heads: 1 
+• GNN layers: 1 
+• Number of blocks: 1 
+• Learning rate: 0.001 
+Comparison 
+The authors compare T-PATCHGNN against 17 baselines across four 
+categories: 
+• MTS Forecasting Models: 
+DLinear, TimesNet, PatchTST, Crossformer, Graph 
+WaveNet, MTGNN, StemGNN, CrossGNN, FourierGNN 
+• IMTS Classification Models: 
+GRU-D, SeFT, RainDrop, Warpformer 
+• IMTS Interpolation Models: 
+mTAND 
+• IMTS Forecasting Models: 
+Latent-ODE, CRU, Neural Flow 
+This broad comparison ensures that the proposed method is evaluated 
+against both specialized IMTS models and general time series 
+architectures. 
+
+--- Page 14 ---
+Evaluation Metrics 
+Two standard regression metrics are used: 
+• Mean Squared Error (MSE): 
+ 
+MSE is sensitive to large errors and emphasizes robustness to outliers. 
+• Mean Absolute Error (MAE): 
+ 
+MAE provides a more interpretable measure of average prediction 
+error. 
+These complementary metrics provide a balanced evaluation of 
+forecasting accuracy. Note that these metrics stand for multivariate 
+forecasting evaluation. 
+Results 
+Main Results 
+Press enter or click to view image in full size 
+
+--- Page 15 ---
+ 
+Table 1: Overall performance evaluated by MSE and MAE. Here, the best-performing and 
+second-best results are highlighted in bold and underline, respectively. (Source) 
+The main experimental results, reported in Table 1, demonstrate that 
+T-PATCHGNN consistently achieves the best performance across all 
+four datasets in terms of both MSE and MAE. Notably, the proposed 
+method outperforms the second-best baseline by a significant margin, 
+often exceeding 10% improvement. For instance, on the PhysioNet 
+dataset, T-PATCHGNN achieves an MSE of 4.98×10⁻³, surpassing 
+strong baselines such as GRU-D and Warpformer. Similar trends are 
+observed on MIMIC, Human Activity, and USHCN datasets, indicating 
+robust generalization across domains. 
+A key observation is that conventional MTS forecasting models, 
+including Transformer-based and GNN-based approaches (e.g., 
+PatchTST, MTGNN), fail to maintain competitive performance when 
+directly applied to IMTS. This highlights the intrinsic difficulty of 
+irregular and asynchronous data. Furthermore, existing IMTS-specific 
+
+--- Page 16 ---
+models, particularly those based on neural ODEs, also underperform 
+compared to T-PATCHGNN, suggesting that solely modeling 
+continuous-time dynamics is insufficient without explicitly 
+capturing inter-series correlations. These results validate the 
+effectiveness of combining transformable patching with 
+adaptive graph learning. 
+Ablation Study 
+Press enter or click to view image in full size 
+ 
+Table 2. Ablation results of T-PATCHGNN on four datasets. (Source) 
+The ablation results, summarized in Table 2, evaluate the 
+contribution of each component in T-PATCHGNN. Removing 
+transformable patching (w/o Patch) leads to noticeable performance 
+degradation across all datasets, confirming its critical role in handling 
+irregularity and enabling effective downstream modeling. Replacing 
+transformable patching with standard patching (rp Patch) further 
+degrades performance in some cases, demonstrating that maintaining 
+a consistent temporal resolution is essential for IMTS. 
+The study also highlights the importance of modeling inter-
+series correlations. Removing variable embeddings (w/o VE) 
+results in a substantial drop in performance, particularly in healthcare 
+
+--- Page 17 ---
+datasets such as PhysioNet and MIMIC, where inherent relationships 
+between variables are crucial. In contrast, removing dynamic patch 
+embeddings (w/o PE) shows relatively smaller 
+degradation, suggesting that static variable characteristics may 
+play a more dominant role in certain domains. 
+Additionally, removing the Transformer module leads to consistent but 
+moderate performance decline, indicating that intra-series 
+temporal modeling remains important but is less critical 
+than proper representation and correlation modeling. 
+Overall, the ablation study confirms that each component 
+contributes meaningfully to the overall performance, with 
+transformable patching and graph-based correlation 
+modeling being the most impactful. 
+Scalability and Efficiency Analysis 
+ 
+Table 3. Evidence of sequence length explosion. Aligned length represents the sequence length 
+after canonical prealignment. (Source) 
+The scalability analysis, presented in Table 3, provides empirical 
+evidence of the sequence length explosion problem in 
+canonical pre-alignment representations. For example, in 
+
+--- Page 18 ---
+the MIMIC dataset, the average sequence length increases by 
+approximately 21.9× compared to the original number of observations, 
+with a maximum amplification of up to 96×. Similar trends are 
+observed across other datasets, especially as the number of variables 
+increases. 
+In contrast, T-PATCHGNN avoids this issue by operating directly on 
+patch-level representations without global alignment. As a result, the 
+effective sequence length remains proportional to the 
+average number of observations per variable, significantly 
+improving scalability. 
+ 
+Fig 3. Efficiency comparison of training and inference. (Source) 
+
+--- Page 19 ---
+Furthermore, Figure 3 compares training and inference efficiency. 
+The proposed method demonstrates competitive or superior 
+efficiency compared to baseline methods, particularly 
+in scenarios with high dimensionality. This confirms that the 
+proposed approach not only improves predictive performance but 
+also offers practical advantages in terms of computational 
+cost and scalability. 
+Effect of Patch Size 
+ 
+Fig 4. Effect of different patch sizes. (Source) 
+
+--- Page 20 ---
+This experiment analyzes the impact of patch window size on 
+forecasting performance, as illustrated in Figure 4. The results show 
+that optimal patch size is dataset-dependent. 
+For PhysioNet and MIMIC, performance is stable for small patches 
+and peaks around 8 hours, balancing sufficient observations within 
+each patch and temporal resolution. Too small patches lack 
+informative context, while overly large patches degrade resolution. 
+In contrast, Human Activity and USHCN benefit from smaller 
+patch sizes, as their more dynamic patterns require finer temporal 
+granularity. The authors further note that larger patches favor 
+long-range forecasting by capturing broader trends, 
+whereas smaller patches are better for short-range 
+predictions. This highlights patch size as a key factor 
+controlling the trade-off between temporal resolution and 
+contextual richness. 
+Conclusion 
+This paper introduces T-PATCHGNN, a novel framework for 
+irregular multivariate time series forecasting that effectively addresses 
+the challenges of irregular sampling, asynchrony, and scalability. By 
+proposing transformable patching, the method avoids the 
+limitations of canonical pre-alignment while preserving local 
+temporal semantics. The integration of Transformer-based intra-
+series modeling and time-adaptive graph neural networks enables 
+comprehensive modeling of both temporal dependencies and dynamic 
+
+--- Page 21 ---
+inter-variable correlations. Extensive experiments on diverse real-
+world datasets demonstrate consistent performance 
+improvements over a wide range of baselines. 
+Review 
+This paper presents a thoughtfully designed framework that tackles 
+three fundamental challenges in IMTS 
+forecasting: irregularity, asynchrony, and scalability. The key 
+strength lies in the transformable patching mechanism, which 
+elegantly replaces the widely used pre-alignment strategy and 
+directly addresses the sequence length explosion issue. By 
+combining this representation with Transformer-based temporal 
+modeling and adaptive graph learning, the model captures both 
+intra- and inter-series dependencies in a unified manner. The 
+experimental evaluation is comprehensive, covering multiple domains 
+and a wide range of baselines, and the consistent performance gains 
+strongly support the effectiveness of the proposed approach. The 
+inclusion of scalability analysis further strengthens the 
+practical relevance of the work. 
+However, the framework also introduces a relatively complex 
+architecture that integrates multiple components, which 
+may increase implementation difficulty and hyperparameter 
+sensitivity. While the model demonstrates strong empirical 
+performance, its reliance on carefully designed patch sizes and 
+graph learning mechanisms may limit its robustness in highly 
+
+--- Page 22 ---
+heterogeneous settings. Also, although the method avoids ODE-based 
+computation, the combination of Transformer and GNN 
+modules could still pose challenges for deployment in 
+resource-constrained environments. Future work could explore 
+simplifying the architecture, automating patch construction, or 
+incorporating more lightweight modeling techniques. Despite these 
+considerations, the paper makes a significant contribution to 
+IMTS forecasting and provides a promising direction for 
+future research in handling irregular and asynchronous time 
+series data. 
+Reference 
+Irregular Multivariate Time Series Forecasting: A Transformable 
+Patching Graph Neural Networks Approach 
+ 
+

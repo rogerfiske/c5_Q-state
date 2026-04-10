@@ -6,7 +6,14 @@
       "Bash(pip install:*)",
       "Bash(PYTHONIOENCODING=utf-8 python:*)",
       "Bash(git push:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(set PYTHONIOENCODING=utf-8)",
+      "Bash(wmic process where \"name=''python.exe''\" get processid,commandline)",
+      "Bash(tasklist:*)",
+      "Bash(taskkill:*)",
+      "Bash(tee:*)"
     ]
   }
 }
