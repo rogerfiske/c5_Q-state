@@ -4,7 +4,9 @@
       "Bash(ls:*)",
       "Read(//c/Users/Minis/CascadeProjects/c5_Q-state/**)",
       "Bash(pip install:*)",
-      "Bash(PYTHONIOENCODING=utf-8 python:*)"
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(git push:*)",
+      "Bash(powershell -Command:*)"
     ]
   }
 }
